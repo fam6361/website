@@ -1,0 +1,78 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.Love__You {
+  padding: 40px 20px;
+  background: linear-gradient(to right, #FFDEE9, #B5FFFC);
+  font-family: 'Quicksand', sans-serif;
+  color: #4A2C2A;
+  text-align: center;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+  overflow: auto;
+}
+
+h2 {
+  font-size: 36px;
+  font-family: 'Great Vibes', cursive;
+  color: #C2185B;
+  margin-bottom: 20px;
+}
+
+.love-text {
+  font-size: 20px;
+  line-height: 1.7;
+  margin: 0 auto 20px;
+  max-width: 600px;
+}
+
+.heart-tree {
+  max-width: 200px;
+  margin: 30px auto;
+  display: block;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.timer {
+  font-weight: bold;
+  margin-top: 20px;
+  font-size: 18px;
+  color: #880E4F;
+}
+
+#heartsCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#toggleMusic {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #ff4081;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 999;
+  transition: background 0.3s ease;
+}
+
+#toggleMusic:hover {
+  background: #e91e63;
+}

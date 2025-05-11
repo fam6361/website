@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Untuk Cintaku</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="Love__You">
+    <h2>Untuk Cintaku Tersayang 💖</h2>
+    <p class="love-text">
+      Jika aku boleh memilih tempat paling aman di dunia,<br/>
+      maka pelukanmu adalah jawabannya.<br/><br/>
+      Semakin lama aku bersamamu,<br/>
+      semakin aku menyadari bahwa kamulah satu-satunya<br/>
+      yang selalu ingin aku perjuangkan.<br/><br/>
+      Aku bersyukur atas setiap detik bersamamu,<br/>
+      dan aku akan terus menghitungnya dengan penuh cinta.
+    </p>
+
+    <img src="https://i.imgur.com/nR4tG9M.png" alt="Heart Tree" class="heart-tree" />
+
+    <p>Waktu kita dimulai sejak...</p>
+    <div class="timer" id="timer">Menghitung...</div>
+
+    <canvas id="heartsCanvas"></canvas>
+    <audio id="bgMusic" autoplay loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
+  Browser kamu tidak mendukung audio.
+</audio>
+
+<button id="toggleMusic">⏸ Pause Musik</button>
+
+  </div>
+
+  <script>
+    // Timer romantis
+    const startDate = new Date("2024-05-10T21:15:00");
+    const timerElement = document.getElementById("timer");
+    function updateTimer() {
+      const now = new Date();
+      const diff = now - startDate;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      timerElement.innerText = `${days} hari ${hours} jam ${minutes} menit ${seconds} detik`;
+    }
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    // Efek animasi hati melayang
+    const canvas = document.getElementById('heartsCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const hearts = [];
+
+    function Heart() {
+      this.x = Math.random() * canvas.width;
+      this.y = canvas.height + Math.random() * 100;
+      this.size = Math.random() * 20 + 10;
+      this.speedY = Math.random() * 1 + 0.5;
+      this.alpha = Math.random() * 0.5 + 0.5;
+    }
+
+    Heart.prototype.draw = function () {
+      ctx.globalAlpha = this.alpha;
+      ctx.font = `${this.size}px Great Vibes`;
+      ctx.fillStyle = 'pink';
+      ctx.fillText('❤', this.x, this.y);
+    };
+
+    Heart.prototype.update = function () {
+      this.y -= this.speedY;
+      if (this.y < -50) {
+        this.y = canvas.height + Math.random() * 100;
+        this.x = Math.random() * canvas.width;
+      }
+    };
+
+    function animateHearts() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      hearts.forEach(h => {
+        h.update();
+        h.draw();
+      });
+      requestAnimationFrame(animateHearts);
+    }
+
+    for (let i = 0; i < 50; i++) {
+      hearts.push(new Heart());
+    }
+
+    animateHearts();
+    // Musik background kontrol
+const music = document.getElementById('bgMusic');
+const toggleBtn = document.getElementById('toggleMusic');
+
+toggleBtn.addEventListener('click', () => {
+  if (music.paused) {
+    music.play();
+    toggleBtn.textContent = '⏸ Pause Musik';
+  } else {
+    music.pause();
+    toggleBtn.textContent = '▶️ Mainkan Musik';
+  }
+});
+
+  </script>
+</body>
+</html>
